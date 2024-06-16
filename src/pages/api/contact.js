@@ -1,6 +1,8 @@
 import isValidEmail, { emailRegex } from '@/lib/isValidEmail';
 import Joi from 'joi';
 
+export const runtime = "edge"
+
 const reqBodySchema = Joi.object({
 	name: Joi.string().required(),
 	email: Joi.string()
