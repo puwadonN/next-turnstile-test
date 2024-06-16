@@ -3,7 +3,7 @@ import ContactForm from '@/components/ContactForm';
 import ContactFormProvider from '@/context/ContactFormProvider';
 import Head from 'next/head';
 
-// export const runtime = "edge"
+export const runtime = "edge"
 
 export default function Home() {
 	return (
