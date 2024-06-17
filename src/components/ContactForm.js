@@ -58,6 +58,7 @@ export default function ContactForm() {
 				...formik?.values,
 				turnstileToken,
 			};
+			console.log(`reqData: `, reqData)
 			try {
 				const { data } = await axios.post('/api/contact', reqData);
 				setIsSubmitting(false);
