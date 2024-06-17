@@ -61,15 +61,16 @@ export default async function handler(req, res) {
 					if (verifyResponse.ok) {
 						//get the data from the body of the request
 						const verifyData = await verifyResponse.json();
+						return new Response(JSON.stringify(verifyData), {
+							status: 200,
+							headers: {
+							  "message": "Form submission was successful~"
+							},
+						});
 						//process the form data if the token verification success is true
 						if (verifyData?.success) {
 							//send the form data using email or save the submission to a database
-							return new Response(JSON.stringify(verifyData), {
-								status: 200,
-								headers: {
-								  "message": "Form submission was successful~"
-								},
-							});
+							
 							  
 							return res.status(200).send({
 								message: 'Form submission was successful',
