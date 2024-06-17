@@ -83,6 +83,12 @@ export default async function handler(req, res) {
 						throw new Error('Token verification failed');
 					}
 				} catch (err) {
+					return new Response(JSON.stringify(err), {
+						status: 403,
+						headers: {
+						  "message": "Token verification failed~"
+						},
+					});
 					return res.status(403).send({
 						message: 'Token verification failed',
 					});
@@ -97,17 +103,36 @@ export default async function handler(req, res) {
 						};
 					}
 				);
+				return new Response(JSON.stringify(err), {
+					status: 403,
+					headers: {
+					  "message": "Invalid request data~",
+					  errors: transformedErrors,
+					},
+				});
 				return res.status(400).send({
 					message: 'Invalid request data',
 					errors: transformedErrors,
 				});
 			}
 		} else {
+			return new Response(JSON.stringify(err), {
+				status: 400,
+				headers: {
+				  "message": "Missing body in request~",
+				},
+			});
 			return res.status(400).send({
 				message: 'Missing body in request',
 			});
 		}
 	} else {
+		return new Response(JSON.stringify(err), {
+			status: 405,
+			headers: {
+			  "message": "Method not allowed~",
+			},
+		});
 		return res.status(405).send({
 			message: 'Method not allowed',
 		});
