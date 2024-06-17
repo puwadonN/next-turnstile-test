@@ -33,17 +33,19 @@ const TURNSTILE_VERIFY_URL =
 	'https://challenges.cloudflare.com/turnstile/v0/siteverify';
 
 export default async function handler(req) {
+	console.log(`call api`)
 	if (req.method === 'POST') {
 		const reqBody = await req.json();
+		// console.log(`reqBody `, reqBody)
+		// reqBody.turnstileToken = "0.i8G_igGWWopLMMNiOyWHN5BkmaNCV2Dx28UeC8KAaeXOh9-yaF2R3uFhNf87xV8_bJff5dt51yG2i5XJSTk33L7RGgfuF7S9SFdfN4wneAy_2jtyR-NNhqkAUI0_njHsi5OgKBGyZY1_wEy1iupbxUY8e8UDaeI4r1gWaLXAa8PaGgklNzvtjTQiIf9kYmMtC9cAKC4osrYFQBCDcS6PzRtjbKISEszWUUgUkAWL0KlyWjMFljHb4rYJUqf0WgRmdrn0_-BQy-3QPrKiIiZZtGgcGrtknbxKQvtBNJJ18hyLcKSXdcLP03FVUFy4ZfxLXspxHBQjdlgsmH6T_cdJ6bJflJJwVaJ9g3LnSTiNuQsSXY7GC_kbREToYFw7_aVYiKVE4qqIUJKawBqA447h1jjDZWG6Lucj8baJV_bRiaQvep50E27YTtyvpFsgdqt4vi0IrJHwKNW798waPuVex1dbaNucvtyGtqwBaoKeDIc.zT8XkWSivqVfz7S3cx8mNw.d111a9998e14086ae0f668dfeb820262b25bce1c62ea6611e168cc9de16ca312"
 		// nodeLog(typeof reqBody === 'object' && reqBody instanceof Object);
 		// nodeLog(req.body instanceof {})
 		if (typeof reqBody === 'object' && reqBody instanceof Object) {
 			try {
-				const _ = await reqBodySchema.validateAsync(reqBody);
+				// const _ = await reqBodySchema.validateAsync(reqBody);
 				//by now we have validated the body of the request
 				const { name, email, subject, message, turnstileToken } =
 					reqBody;
-					
 				//verify the token
 				try {
 					const bodyData = `secret=${encodeURIComponent(
@@ -57,11 +59,12 @@ export default async function handler(req) {
 							'content-type': 'application/x-www-form-urlencoded',
 						},
 					});
-					console.log(`verifyResponse: `, verifyResponse)
+					// console.log(`verifyResponse: `, verifyResponse)
+					// console.log(`verifyResponse.ok`,verifyResponse.ok)
 					if (verifyResponse.ok) {
 						//get the data from the body of the request
 						const verifyData = await verifyResponse.json();
-						return new Response(JSON.stringify(verifyResponse), {
+						return new Response(JSON.stringify(verifyData), {
 							status: 200,
 							headers: {
 							  "message": "Form submission was successful~"
@@ -71,10 +74,7 @@ export default async function handler(req) {
 						if (verifyData?.success) {
 							//send the form data using email or save the submission to a database
 							
-							  
-							return res.status(200).send({
-								message: 'Form submission was successful',
-							});
+							
 						} else {
 							//will be caught in the catch block with 403 status code
 							throw new Error('Token verification failed2222');
