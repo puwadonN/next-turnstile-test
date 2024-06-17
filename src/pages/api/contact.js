@@ -39,7 +39,7 @@ export default async function handler(req, res) {
 		// nodeLog(req.body instanceof {})
 		if (typeof reqBody === 'object' && reqBody instanceof Object) {
 			try {
-				const _ = await reqBodySchema.validateAsync(reqBody);
+				// const _ = await reqBodySchema.validateAsync(reqBody);
 				//by now we have validated the body of the request
 				const { name, email, subject, message, turnstileToken } =
 					reqBody;
