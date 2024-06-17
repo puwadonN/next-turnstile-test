@@ -28,7 +28,7 @@ const reqBodySchema = Joi.object({
 		.required(),
 });
 
-const TURNSTILE_SECRET_KEY = process.env.TURNSTILE_SECRET_KEY;
+const TURNSTILE_SECRET_KEY = "0x4AAAAAAAcqiPSpQq3gA9i2QNqVl0u6_JQ";
 const TURNSTILE_VERIFY_URL =
 	'https://challenges.cloudflare.com/turnstile/v0/siteverify';
 
