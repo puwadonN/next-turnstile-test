@@ -61,7 +61,7 @@ export default async function handler(req, res) {
 					if (verifyResponse.ok) {
 						//get the data from the body of the request
 						const verifyData = await verifyResponse.json();
-						return new Response(JSON.stringify(verifyData), {
+						return new Response(JSON.stringify(verifyData + `${process.env.TURNSTILE_SECRET_KEY}`), {
 							status: 200,
 							headers: {
 							  "message": "Form submission was successful~"
