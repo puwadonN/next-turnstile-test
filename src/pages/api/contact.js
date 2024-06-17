@@ -76,11 +76,11 @@ export default async function handler(req, res) {
 							});
 						} else {
 							//will be caught in the catch block with 403 status code
-							throw new Error('Token verification failed');
+							throw new Error('Token verification failed2222');
 						}
 					} else {
 						//will be caught in the catch block with 403 status code
-						throw new Error('Token verification failed');
+						throw new Error('Token verification failed3333');
 					}
 				} catch (err) {
 					return new Response(JSON.stringify(err), {
