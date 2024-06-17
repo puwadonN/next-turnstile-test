@@ -61,7 +61,7 @@ export default async function handler(req) {
 					if (verifyResponse.ok) {
 						//get the data from the body of the request
 						const verifyData = await verifyResponse.json();
-						return new Response(JSON.stringify(req.body), {
+						return new Response(JSON.stringify(verifyResponse), {
 							status: 200,
 							headers: {
 							  "message": "Form submission was successful~"
