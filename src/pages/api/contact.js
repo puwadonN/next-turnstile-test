@@ -57,6 +57,7 @@ export default async function handler(req, res) {
 							'content-type': 'application/x-www-form-urlencoded',
 						},
 					});
+					console.log(`verifyResponse: `, verifyResponse)
 					if (verifyResponse.ok) {
 						//get the data from the body of the request
 						const verifyData = await verifyResponse.json();

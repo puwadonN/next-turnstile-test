@@ -72,6 +72,7 @@ export default function ContactForm() {
 				setTurnstileWidgetStatus('');
 				contactFormTurnstileWidgetRef?.current?.reset();
 			} catch (err) {
+				console.log(`error `, err)
 				setIsSubmitting(false);
 				contactFormTurnstileWidgetRef?.current?.reset();
 				toast.error('Failed to verify the token, try again');
